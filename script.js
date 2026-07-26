@@ -51,9 +51,8 @@ getButton.onclick = async function () {
         });
 
 		
-        await navigator.clipboard.writeText(texte);
         const texte = await response.text();
-
+        await navigator.clipboard.writeText(texte);
         result.textContent = texte;
 
     } catch (error) {
