@@ -2,10 +2,10 @@ const SERVER = "https://oscar4ayl.alwaysdata.net";
 
 const sendButton = document.getElementById("send");
 const getButton = document.getElementById("get");
-const result = document.getElementById("result");
+const status = document.getElementById("status");
 
 
-// SEND : envoie le contenu du presse-papier local au serveur
+// SEND
 sendButton.onclick = async function () {
 
     try {
@@ -23,19 +23,20 @@ sendButton.onclick = async function () {
             })
         });
 
-        const retour = await response.text();
-
-        result.textContent = retour;
+        if (response.ok)
+            status.textContent = "OK";
+        else
+            status.textContent = "ERREUR";
 
     } catch (error) {
 
-        result.textContent = "Erreur SEND : " + error;
+        status.textContent = "ERREUR";
 
     }
 };
 
 
-// GET : récupère le contenu du serveur
+// GET
 getButton.onclick = async function () {
 
     try {
@@ -50,14 +51,15 @@ getButton.onclick = async function () {
             })
         });
 
-		
         const texte = await response.text();
+
         await navigator.clipboard.writeText(texte);
-        result.textContent = texte;
+
+        status.textContent = "OK";
 
     } catch (error) {
 
-        result.textContent = "Erreur serveur : " + error;
+        status.textContent = "ERREUR";
 
     }
 };
