@@ -18,6 +18,7 @@ sendButton.onclick = async function () {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
+				app: "paperclip",
                 request: "send",
                 content: texte
             })
@@ -47,6 +48,7 @@ getButton.onclick = async function () {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
+				app: "paperclip",
                 request: "get"
             })
         });
